@@ -2,6 +2,7 @@ package com.example.gantnews;
 
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -93,6 +94,8 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
                     recyclerView.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
 
+                    iniTListner();
+
                     topHeadline.setVisibility(View.VISIBLE);
                     swipeRefreshLayout.setRefreshing(false);
 
@@ -114,6 +117,28 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         });
 
     }
+
+    private void iniTListner(){
+
+        adapter.setOnItemClickListener(new Adapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Intent intent = new Intent(MainActivity.this, NewsDetailActivity.class);
+
+                Article article = articles.get(position);
+                intent.putExtra("url", article.getUrl());
+                intent.putExtra("title", article.getTitle());
+                intent.putExtra("img", article.getUrlToImage());
+                intent.putExtra("date", article.getPublishedAt());
+                intent.putExtra("source", article.getSource().getName());
+                intent.putExtra("author", article.getAuthor());
+
+                startActivity(intent);
+            }
+        });
+    }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
