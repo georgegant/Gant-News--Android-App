@@ -16,7 +16,7 @@
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
-        android:title="Settings"
+        android:title="Feel Good"
         app:showAsAction="never"/>
 
 </menu>

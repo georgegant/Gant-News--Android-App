@@ -24,20 +24,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/topheadlines"
-                    android:textColor="@color/colorTextTitle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:text="Top HeadLines"
-                    android:fontFamily="sans-serif-light"
-                    android:textSize="17sp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginTop="10dp"
-                    android:visibility="invisible"
-                    />
+
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/resyclerView"

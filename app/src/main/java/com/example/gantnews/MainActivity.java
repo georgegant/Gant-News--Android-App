@@ -45,7 +45,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     private List<Article> articles = new ArrayList<>();
     private Adapter adapter;
     private String TAG = MainActivity.class.getSimpleName();
-    private TextView topHeadline;
     private SwipeRefreshLayout swipeRefreshLayout;
     private RelativeLayout errorLayout;
     private ImageView errorImage;
@@ -62,7 +61,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         swipeRefreshLayout.setOnRefreshListener(this);
         swipeRefreshLayout.setColorSchemeResources(R.color.colorAccent);
 
-        topHeadline = findViewById(R.id.topheadlines);
         recyclerView = findViewById(R.id.resyclerView);
         layoutManager = new LinearLayoutManager(MainActivity.this);
         recyclerView.setLayoutManager(layoutManager);
@@ -82,7 +80,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     public void LoadJson(final String keyword){
 
         errorLayout.setVisibility(View.GONE);
-        topHeadline.setVisibility(View.INVISIBLE);
         swipeRefreshLayout.setRefreshing(true);
 
         ApiInterface apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
@@ -115,12 +112,10 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
                     iniTListner();
 
-                    topHeadline.setVisibility(View.VISIBLE);
                     swipeRefreshLayout.setRefreshing(false);
 
                 } else {
 
-                    topHeadline.setVisibility(View.INVISIBLE);
                     swipeRefreshLayout.setRefreshing(false);
 
                     String errorCode;
@@ -145,9 +140,8 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             @Override
             public void onFailure(Call<News> call, Throwable t) {
 
-                topHeadline.setVisibility(View.INVISIBLE);
                 swipeRefreshLayout.setRefreshing(false);
-                showErrorMessage(R.drawable.no_result, "Ooos..", "Network failure! Please, Try Again\n" + t.toString());
+                showErrorMessage(R.drawable.no_result, "Ooops...Check your Internet Connection", "Network failure! Please, Try Again\n" + t.toString());
 
             }
         });
